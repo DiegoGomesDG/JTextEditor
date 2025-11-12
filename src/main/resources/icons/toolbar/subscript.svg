@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   width="16"
+   height="16"
+   viewBox="0 0 16 16"
+   fill="none"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="subscript.svg"
+   inkscape:version="1.4.2 (ebf0e940, 2025-05-08)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     showguides="true"
+     inkscape:zoom="35.2621"
+     inkscape:cx="7.6144074"
+     inkscape:cy="9.1741557"
+     inkscape:window-width="1512"
+     inkscape:window-height="920"
+     inkscape:window-x="0"
+     inkscape:window-y="34"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg1">
+    <sodipodi:guide
+       position="-2.3822504,7.9887224"
+       orientation="0,-1"
+       id="guide1"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <path
+     fill-rule="evenodd"
+     clip-rule="evenodd"
+     d="M 2.3559,3.5995893 C 2.0685422,3.280304 1.5767613,3.2544273 1.257476,3.541777 0.93819038,3.8291348 0.9123138,4.3209159 1.1996637,4.6402015 L 4.231394,8.0087797 1.1996637,11.377334 c -0.2873499,0.319357 -0.26147332,0.811067 0.057813,1.098456 0.3192854,0.287389 0.8110664,0.261489 1.098424,-0.05778 L 5.2777852,9.1714806 8.1996545,12.418001 c 0.2873883,0.319279 0.7791774,0.345179 1.0984548,0.05778 0.3192785,-0.287386 0.3451785,-0.779098 0.057792,-1.098453 L 6.3241758,8.0087797 9.3558986,4.6402015 C 9.6432878,4.3209159 9.6173878,3.8291348 9.2981066,3.541777 8.9788291,3.2544273 8.48704,3.280304 8.1996518,3.5995896 L 5.2777851,6.8461264 Z m 9.780398,6.7801687 c 0.232789,-0.2247 0.609777,-0.19499 0.804456,0.06347 0.156488,0.207745 0.142256,0.497622 -0.03392,0.688955 l -2.367943,2.572033 c -0.209065,0.227111 -0.264056,0.556499 -0.140077,0.839221 0.124054,0.282722 0.403588,0.465345 0.712288,0.465345 h 3.11111 C 14.651788,15.008782 15,14.660568 15,14.231004 15,13.801437 14.651788,13.453226 14.222221,13.453226 h -1.337856 l 1.166898,-1.267466 c 0.684832,-0.743869 0.740366,-1.870869 0.132066,-2.6784371 -0.756856,-1.00481 -2.222501,-1.1203874 -3.127445,-0.2466334 L 10.570862,9.728913 c -0.309011,0.298433 -0.317643,0.790767 -0.01928,1.099778 0.298357,0.309089 0.790767,0.317721 1.099777,0.01936 z"
+     fill="#ffffff"
+     id="path1"
+     style="stroke-width:0.777778" />
+</svg>

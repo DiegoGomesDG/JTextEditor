@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   width="16"
+   height="16"
+   viewBox="0 0 16 16"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="bullet-list.svg"
+   inkscape:version="1.4.2 (ebf0e940, 2025-05-08)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:zoom="8.6089873"
+     inkscape:cx="20.734146"
+     inkscape:cy="4.9367014"
+     inkscape:window-width="1512"
+     inkscape:window-height="920"
+     inkscape:window-x="0"
+     inkscape:window-y="34"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg1" />
+  <title
+     id="title1">bullet-list</title>
+  <desc
+     id="desc1">Created with Sketch Beta.</desc>
+  <defs
+     id="defs1" />
+  <g
+     id="Page-1"
+     stroke="none"
+     stroke-width="1"
+     fill="none"
+     fill-rule="evenodd"
+     sketch:type="MSPage"
+     style="fill:#ffffff"
+     transform="matrix(0.57142857,0,0,0.57142857,1.9999987e-8,2.2857143)">
+    <g
+       id="Icon-Set"
+       sketch:type="MSLayerGroup"
+       transform="translate(-570,-209)"
+       fill="#000000"
+       style="fill:#ffffff">
+      <path
+         d="m 597,226 h -18 c -0.553,0 -1,0.448 -1,1 0,0.553 0.447,1 1,1 h 18 c 0.553,0 1,-0.447 1,-1 0,-0.552 -0.447,-1 -1,-1 z m -25,-17 c -1.104,0 -2,0.896 -2,2 0,1.104 0.896,2 2,2 1.104,0 2,-0.896 2,-2 0,-1.104 -0.896,-2 -2,-2 z m 7,3 h 18 c 0.553,0 1,-0.447 1,-1 0,-0.553 -0.447,-1 -1,-1 h -18 c -0.553,0 -1,0.447 -1,1 0,0.553 0.447,1 1,1 z m 18,6 h -18 c -0.553,0 -1,0.448 -1,1 0,0.553 0.447,1 1,1 h 18 c 0.553,0 1,-0.447 1,-1 0,-0.552 -0.447,-1 -1,-1 z m -25,-1 c -1.104,0 -2,0.896 -2,2 0,1.104 0.896,2 2,2 1.104,0 2,-0.896 2,-2 0,-1.104 -0.896,-2 -2,-2 z m 0,8 c -1.104,0 -2,0.896 -2,2 0,1.104 0.896,2 2,2 1.104,0 2,-0.896 2,-2 0,-1.104 -0.896,-2 -2,-2 z"
+         id="bullet-list"
+         sketch:type="MSShapeGroup"
+         style="fill:#ffffff" />
+    </g>
+  </g>
+  <metadata
+     id="metadata1">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title>bullet-list</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+</svg>
