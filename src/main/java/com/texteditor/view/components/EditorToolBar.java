@@ -2,6 +2,7 @@ package com.texteditor.view.components;
 
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.texteditor.view.custom.ColorSplitButton;
+import com.texteditor.view.custom.FontsComboBox;
 
 import javax.swing.*;
 import java.awt.*;
@@ -45,8 +46,7 @@ public class EditorToolBar extends JToolBar {
         });
 
         /* Change to personalized */
-        fontStyles = new JComboBox<>(GraphicsEnvironment.getLocalGraphicsEnvironment()
-            .getAvailableFontFamilyNames());
+        fontStyles = new FontsComboBox();
         fontStyles.setSelectedItem("Times New Roman");
 
         /* Font Size JComboBox */

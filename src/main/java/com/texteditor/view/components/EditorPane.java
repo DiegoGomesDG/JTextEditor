@@ -1,4 +1,11 @@
 package com.texteditor.view.components;
 
-public class EditorPane {
+import javax.swing.*;
+
+public class EditorPane extends JEditorPane {
+
+    public EditorPane() {
+        setContentType("text/html");
+    }
+
 }

@@ -20,6 +20,7 @@ public class ColorSplitButton extends JPanel {
         setLayout(new GridLayout(1, 2));
         setOpaque(true);
         setBackground(UIManager.getColor("ToolBar.background"));
+        setMaximumSize(new Dimension(40, 30));
 
         /* Main Button */
         mainButton = new JButton();

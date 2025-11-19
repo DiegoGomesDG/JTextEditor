@@ -2,6 +2,8 @@ package com.texteditor.view;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.util.SystemInfo;
+import com.texteditor.view.components.EditorMenuBar;
+import com.texteditor.view.components.EditorPane;
 import com.texteditor.view.components.EditorStatusBar;
 import com.texteditor.view.components.EditorToolBar;
 
@@ -14,17 +16,22 @@ public class TextEditorView extends JFrame {
 
     private EditorToolBar toolBar;
     private EditorStatusBar statusBar;
+    private EditorPane editorPane;
+    private EditorMenuBar menuBar;
 
     public TextEditorView() {
         setTitle("Java Text Editor");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(900, 600);
+        setMinimumSize(new Dimension(860, 300));
         setResizable(true);
         setLocationRelativeTo(null); /* Center the window */
 
         /* Create Components */
         toolBar = new EditorToolBar();
         statusBar = new EditorStatusBar();
+        editorPane = new EditorPane();
+        menuBar = new EditorMenuBar();
 
         /* Use BorderLayout */
         setLayout(new BorderLayout());
@@ -32,6 +39,10 @@ public class TextEditorView extends JFrame {
         /* Add to the layout */
         add(toolBar, BorderLayout.NORTH);
         add(statusBar, BorderLayout.SOUTH);
+        add(editorPane, BorderLayout.CENTER);
+
+        /* Set MenuBar */
+        setJMenuBar(menuBar);
 
         if(SystemInfo.isMacOS) {
             JRootPane rootPane = getRootPane();
@@ -51,7 +62,7 @@ public class TextEditorView extends JFrame {
 
             /* Enable full screen mode for the window */
             if (!SystemInfo.isJava_11_orLater) {
-                rootPane.putClientProperty( "apple.awt.fullscreenable", true);
+                rootPane.putClientProperty("apple.awt.fullscreenable", true);
             }
 
         }
