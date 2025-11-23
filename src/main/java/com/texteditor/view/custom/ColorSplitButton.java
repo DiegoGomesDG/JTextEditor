@@ -1,6 +1,7 @@
 package com.texteditor.view.custom;
 
 import com.formdev.flatlaf.extras.FlatSVGIcon;
+import com.texteditor.view.components.EditorToolBar;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,11 +16,10 @@ public class ColorSplitButton extends JPanel {
     Color currentColor;
     private boolean hover = false;
 
-
     public ColorSplitButton() {
         setLayout(new GridLayout(1, 2));
         setOpaque(true);
-        setBackground(UIManager.getColor("ToolBar.background"));
+        setBackground(EditorToolBar.getBackgroundColor());
         setMaximumSize(new Dimension(40, 30));
 
         /* Main Button */

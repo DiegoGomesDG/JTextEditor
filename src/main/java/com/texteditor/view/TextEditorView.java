@@ -1,7 +1,6 @@
 package com.texteditor.view;
 
-import com.formdev.flatlaf.FlatClientProperties;
-import com.formdev.flatlaf.util.SystemInfo;
+import com.texteditor.config.GUIConfig;
 import com.texteditor.view.components.*;
 
 import javax.swing.*;
@@ -19,7 +18,7 @@ public class TextEditorView extends JFrame {
     public TextEditorView(String title) {
         setTitle(title);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(900, 600);
+        setSize(950, 600);
         setMinimumSize(new Dimension(870, 300));
         setResizable(true);
         setLocationRelativeTo(null); /* Center the window */
@@ -30,7 +29,6 @@ public class TextEditorView extends JFrame {
         editorPane = new EditorPane();
         menuBar = new EditorMenuBar();
 
-        /* Use BorderLayout */
         setLayout(new BorderLayout());
 
         /* Add to the layout */
@@ -38,41 +36,13 @@ public class TextEditorView extends JFrame {
         add(statusBar, BorderLayout.SOUTH);
         add(editorPane, BorderLayout.CENTER);
 
-        /* Set MenuBar */
         setJMenuBar(menuBar);
 
-        configureMacOSWindow();
+        /* Call the method to set specific MacOS GUI features */
+        GUIConfig.configureMacOSWindow(this);
     }
 
     public TextEditorView() {
         this("Document 1");
-    }
-
-    private void configureMacOSWindow() {
-        if(!SystemInfo.isMacOS) {
-            return;
-        }
-
-        JRootPane rootPane = getRootPane();
-        if(SystemInfo.isMacFullWindowContentSupported) {
-
-            /* Expand window content into window title bar and make title bar transparent*/
-            //rootPane.putClientProperty("apple.awt.fullWindowContent", true);
-            rootPane.putClientProperty("apple.awt.transparentTitleBar", true);
-            //rootPane.putClientProperty( FlatClientProperties.MACOS_WINDOW_BUTTONS_SPACING, FlatClientProperties.MACOS_WINDOW_BUTTONS_SPACING_LARGE );
-
-            /* Hide window title */
-            if (SystemInfo.isJava_17_orLater) {
-                //rootPane.putClientProperty("apple.awt.windowTitleVisible", false);
-            } else {
-                //setTitle(null);
-            }
-        }
-
-        /* Enable full screen mode for the window */
-        if (!SystemInfo.isJava_11_orLater) {
-            rootPane.putClientProperty("apple.awt.fullscreenable", true);
-        }
-
     }
 }

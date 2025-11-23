@@ -9,6 +9,8 @@ import java.awt.*;
 
 public class EditorToolBar extends JToolBar {
 
+    private static final Color BACKGROUND_COLOR = new Color(40,40,40);
+
     private final JComboBox<String> paragraphStyle;
     private final JComboBox<String> fontStyles;
     private final JComboBox<String> fontSize;
@@ -33,7 +35,12 @@ public class EditorToolBar extends JToolBar {
     private final JButton numberedListButton;
 
     public EditorToolBar() {
+
+        /* Add margins to create some separation between the JEditorPane and the Window Title */
         setMargin(new Insets(1, 10, 3, 10));
+
+        /* Change background color */
+        setBackground(BACKGROUND_COLOR);
 
         /* Initialize components */
         paragraphStyle = new JComboBox<>(new String[]{
@@ -135,12 +142,12 @@ public class EditorToolBar extends JToolBar {
         /* Add to the toolbar */
         add(paragraphStyle);
 
-        addSeparator();
+        addSeparator(new Dimension(20, 25));
 
         add(fontStyles);
         add(fontSize);
 
-        addSeparator();
+        addSeparator(new Dimension(10, 25));
 
         add(boldButton);
         add(italicButton);
@@ -149,25 +156,30 @@ public class EditorToolBar extends JToolBar {
         add(subscriptButton);
         add(superscriptButton);
 
-        addSeparator();
+        addSeparator(new Dimension(10, 25));
 
         add(clearFormattingButton);
-        addSeparator();
+
+        addSeparator(new Dimension(10, 25));
+
         add(textColor);
         add(highlightColor);
 
-        addSeparator();
+        addSeparator(new Dimension(10, 25));
 
         add(alignLeftButton);
         add(alignCenterButton);
         add(alignRightButton);
         add(justifyButton);
 
-        addSeparator();
+        addSeparator(new Dimension(10, 25));
 
         add(bulletListButton);
         add(numberedListButton);
 
+    }
 
+    public static Color getBackgroundColor() {
+        return BACKGROUND_COLOR;
     }
 }
