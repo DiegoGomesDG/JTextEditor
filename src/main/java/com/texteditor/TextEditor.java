@@ -1,13 +1,15 @@
 package com.texteditor;
 
+import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import com.formdev.flatlaf.util.SystemInfo;
 import com.texteditor.view.TextEditorView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Collections;
 
-public class Main {
+public class TextEditor {
     public static void main(String[] args) {
 
         /* MacOS Specific GUI Customization
@@ -29,12 +31,12 @@ public class Main {
         }
 
         SwingUtilities.invokeLater( () -> {
+            FlatLaf.setGlobalExtraDefaults(Collections.singletonMap("@accentColor", "#F00"));
             FlatMacDarkLaf.setup();
-            UIManager.put("ToolBar.background", new Color(45,45,45));
+            UIManager.put("ToolBar.background", new Color(40,40,40));
 
             /* TextEditor Frame */
             TextEditorView textEditorView = new TextEditorView();
-
             textEditorView.setVisible(true);
         });
     }

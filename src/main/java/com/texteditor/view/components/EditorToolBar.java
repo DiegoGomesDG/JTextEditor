@@ -33,6 +33,7 @@ public class EditorToolBar extends JToolBar {
     private final JButton numberedListButton;
 
     public EditorToolBar() {
+        setMargin(new Insets(1, 10, 3, 10));
 
         /* Initialize components */
         paragraphStyle = new JComboBox<>(new String[]{
