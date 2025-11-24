@@ -45,4 +45,13 @@ public class TextEditorView extends JFrame {
     public TextEditorView() {
         this("Document 1");
     }
+
+    public JEditorPane getEditorPane() {
+        return editorPane;
+    }
+
+    public EditorToolBar getTextEditorToolBar() {
+        return textEditorToolBar;
+    }
+
 }

@@ -2,12 +2,12 @@ package com.texteditor;
 
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
-import com.formdev.flatlaf.util.SystemInfo;
 import com.texteditor.config.GUIConfig;
+import com.texteditor.controller.TextEditorController;
+import com.texteditor.model.TextDocumentModel;
 import com.texteditor.view.TextEditorView;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.Collections;
 
 public class TextEditor {
@@ -21,8 +21,10 @@ public class TextEditor {
 
         /* Initialize Text Editor */
         SwingUtilities.invokeLater( () -> {
-            TextEditorView textEditorView = new TextEditorView();
-            textEditorView.setVisible(true);
+            TextEditorView view = new TextEditorView();
+            TextDocumentModel model = new TextDocumentModel();
+            TextEditorController controller = new TextEditorController(model, view);
+            view.setVisible(true);
         });
     }
 }

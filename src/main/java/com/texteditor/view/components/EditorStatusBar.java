@@ -36,7 +36,7 @@ public class EditorStatusBar extends JPanel {
         leftPanel.setAlignmentY(Component.CENTER_ALIGNMENT);
 
         pageLabel = new JLabel("Page 1 of 1");
-        wordAndCharCountLabel = new JLabel("xxx words, xxx characters");
+        wordAndCharCountLabel = new JLabel("");
 
         leftPanel.add(pageLabel);
         leftPanel.add(Box.createHorizontalStrut(30));
@@ -61,7 +61,7 @@ public class EditorStatusBar extends JPanel {
         this.charCount = charCount;
         this.wordCount = wordCount;
 
-        String info = new String("");
+        String info = "";
         if (wordCount == 1) {
             info += "1 word, ";
         } else {
@@ -75,6 +75,14 @@ public class EditorStatusBar extends JPanel {
         }
 
         wordAndCharCountLabel.setText(info);
+    }
+
+    public int getWordCount() {
+        return wordCount;
+    }
+
+    public int getCharCount() {
+        return charCount;
     }
 
 }
