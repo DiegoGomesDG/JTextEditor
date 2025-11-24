@@ -1,6 +1,10 @@
 package com.texteditor.controller.actions;
 
 public enum TextAction {
+    TEXT_STYLE,
+    TEXT_FONT,
+    TEXT_SIZE,
+
     BOLD,
     ITALIC,
     UNDERLINE,

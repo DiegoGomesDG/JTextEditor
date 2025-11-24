@@ -65,7 +65,8 @@ public class EditorToolBar extends JToolBar {
         /* Font Size JComboBox */
         fontSize = new JComboBox<>(new String[]{"8", "9", "10", "11", "12", "14", "16", "18", "20", "24", "28", "32"});
         fontSize.setEditable(true);
-        fontSize.setSelectedItem("11");
+        fontSize.setSelectedItem("12");
+        toolBarComponents.put(TextAction.TEXT_SIZE, fontSize);
 
         /* Bold Button */
         boldButton = new JButton();

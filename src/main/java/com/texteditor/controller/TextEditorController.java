@@ -1,10 +1,7 @@
 package com.texteditor.controller;
 
 import com.formdev.flatlaf.extras.FlatSVGIcon;
-import com.texteditor.controller.actions.StrikeThroughAction;
-import com.texteditor.controller.actions.SubscriptAction;
-import com.texteditor.controller.actions.SuperscriptAction;
-import com.texteditor.controller.actions.TextAction;
+import com.texteditor.controller.actions.*;
 import com.texteditor.model.TextDocumentModel;
 import com.texteditor.view.TextEditorView;
 
@@ -29,8 +26,8 @@ public class TextEditorController {
         this.model = model;
         this.view = view;
 
-        view.getEditorPane().setDocument(model.getDocument());
         view.getEditorPane().setEditorKit(model.getEditorKit());
+        view.getEditorPane().setDocument(model.getDocument());
 
         setUpTextEditingActions();
         setUpToolBarActions();
@@ -39,7 +36,7 @@ public class TextEditorController {
     private void setUpTextEditingActions() {
 
         /* Text Font, Size */
-
+        textEditingActions.put(TextAction.TEXT_SIZE, new FontSizeAction(view.getEditorPane()));
 
         /* Text */
         textEditingActions.put(TextAction.BOLD, new StyledEditorKit.BoldAction());
@@ -82,6 +79,9 @@ public class TextEditorController {
     }
 
     private void setUpToolBarActions() {
+        JComboBox<?> comboBox = (JComboBox<?>) view.getTextEditorToolBar().getToolBarComponent(TextAction.TEXT_SIZE);
+        comboBox.addActionListener(textEditingActions.get(TextAction.TEXT_SIZE));
+
         bindActionToButton(
             (AbstractButton) view.getTextEditorToolBar().getToolBarComponent(TextAction.BOLD),
             textEditingActions.get(TextAction.BOLD),
