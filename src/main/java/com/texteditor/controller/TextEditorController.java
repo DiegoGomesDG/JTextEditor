@@ -4,11 +4,15 @@ import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.texteditor.controller.actions.*;
 import com.texteditor.model.TextDocumentModel;
 import com.texteditor.view.TextEditorView;
-import org.w3c.dom.Text;
+import com.texteditor.view.custom.ColorSplitButton;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 import javax.swing.text.StyledEditorKit;
+import java.awt.*;
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -18,8 +22,8 @@ import java.util.Map;
 */
 public class TextEditorController {
 
-    private TextDocumentModel model;
-    private TextEditorView view;
+    private final TextDocumentModel model;
+    private final TextEditorView view;
 
     private final Map<TextAction, Action> textEditingActions = new EnumMap<>(TextAction.class);
 
@@ -30,8 +34,11 @@ public class TextEditorController {
         view.getEditorPane().setEditorKit(model.getEditorKit());
         view.getEditorPane().setDocument(model.getDocument());
 
+        updateStatusBar(); /* Update to status bar for the new document */
+
         setUpTextEditingActions();
         setUpToolBarActions();
+        setUpStatusBar();
     }
 
     private void setUpTextEditingActions() {
@@ -52,7 +59,8 @@ public class TextEditorController {
         textEditingActions.put(TextAction.CLEAR_FORMATTING, new ClearFormattingAction());
 
         /* Text Color */
-
+        textEditingActions.put(TextAction.TEXT_COLOR, new TextColorAction(view.getEditorPane()));
+        textEditingActions.put(TextAction.HIGHLIGHT_COLOR, new HighlightColorAction(view.getEditorPane()));
 
         /* Text Alignment */
         textEditingActions.put(TextAction.ALIGN_LEFT, new StyledEditorKit.AlignmentAction(
@@ -74,101 +82,102 @@ public class TextEditorController {
 
     }
 
-    private void bindActionToButton(AbstractButton button, Action action, Icon icon, String tooltip) {
-        /* Action resets the Text, Icon, ToolTip */
+    private void bindActionToButton(TextAction actionKey, String iconPath, String tooltip) {
+        AbstractButton button =
+            (AbstractButton) view.getTextEditorToolBar().getToolBarComponent(actionKey);
+
+        Action action = textEditingActions.get(actionKey);
+
         button.setAction(action);
-
-        /* Recreate the button */
         button.setText("");
-        button.setIcon(icon);
+        button.setIcon(new FlatSVGIcon(iconPath));
         button.setToolTipText(tooltip);
+    }
 
+    /* TODO: Checking type */
+    private void bindActionsToColorSplitButton(TextAction actionKey) {
+        ColorSplitButton button = (ColorSplitButton) view.getTextEditorToolBar().getToolBarComponent(actionKey);
+
+        button.getDropButton().addActionListener(e -> {
+            Color newColor = JColorChooser.showDialog(null, "Text Color", button.getColor());
+
+            StyledColorAction action = (StyledColorAction) textEditingActions.get(actionKey);
+            if (newColor != null) {
+                button.setColor(newColor);
+
+                action.setColor(newColor);
+                action.actionPerformed(null); // apply to selection now
+            }
+        });
+
+        button.getMainButton().addActionListener(e -> {
+            Color currentColor = button.getColor();
+            StyledColorAction action = (StyledColorAction) textEditingActions.get(actionKey);
+
+            action.setColor(currentColor);   // inject the color
+            action.actionPerformed(null);    // perform the action
+        });
+    }
+
+    private void bindActionToComboBox(TextAction actionKey) {
+        JComboBox<?> comboBox = (JComboBox<?>) view.getTextEditorToolBar().getToolBarComponent(actionKey);
+        Action action = textEditingActions.get(actionKey);
+        comboBox.addActionListener(action);
     }
 
     private void setUpToolBarActions() {
-        JComboBox<?> sizeComboBox = (JComboBox<?>) view.getTextEditorToolBar().getToolBarComponent(TextAction.TEXT_SIZE);
-        sizeComboBox.addActionListener(textEditingActions.get(TextAction.TEXT_SIZE));
+        bindActionToComboBox(TextAction.TEXT_SIZE);
+        bindActionToComboBox(TextAction.TEXT_FONT);
 
-        JComboBox<String> fontComboBox = (JComboBox<String>) view.getTextEditorToolBar().getToolBarComponent(TextAction.TEXT_FONT);
-        fontComboBox.addActionListener(textEditingActions.get(TextAction.TEXT_FONT));
+        bindActionToButton(TextAction.BOLD, "icons/toolbar/bold.svg", "Bold");
+        bindActionToButton(TextAction.ITALIC, "icons/toolbar/italic.svg", "Italic");
+        bindActionToButton(TextAction.UNDERLINE, "icons/toolbar/underline.svg", "Underline");
+        bindActionToButton(TextAction.STRIKETHROUGH,  "icons/toolbar/strikethrough.svg", "Strikethrough");
+        bindActionToButton(TextAction.SUBSCRIPT, "icons/toolbar/subscript.svg", "Subscript");
+        bindActionToButton(TextAction.SUPERSCRIPT, "icons/toolbar/superscript.svg", "Superscript");
+        bindActionToButton(TextAction.CLEAR_FORMATTING, "icons/toolbar/text-clear-formatting.svg", "Clear Formatting");
 
-        bindActionToButton(
-            (AbstractButton) view.getTextEditorToolBar().getToolBarComponent(TextAction.BOLD),
-            textEditingActions.get(TextAction.BOLD),
-            new FlatSVGIcon("icons/toolbar/bold.svg"),
-            "Bold"
-        );
+        /* Text Color */
+        bindActionsToColorSplitButton(TextAction.TEXT_COLOR);
 
-        bindActionToButton(
-            (AbstractButton) view.getTextEditorToolBar().getToolBarComponent(TextAction.ITALIC),
-            textEditingActions.get(TextAction.ITALIC),
-            new FlatSVGIcon("icons/toolbar/italic.svg"),
-            "Italic"
-        );
+        /* Highlight Color */
+        bindActionsToColorSplitButton(TextAction.HIGHLIGHT_COLOR);
 
-        bindActionToButton(
-            (AbstractButton) view.getTextEditorToolBar().getToolBarComponent(TextAction.UNDERLINE),
-            textEditingActions.get(TextAction.UNDERLINE),
-            new FlatSVGIcon("icons/toolbar/underline.svg"),
-            "Underline"
-        );
+        /* Text Alignment */
+        bindActionToButton(TextAction.ALIGN_LEFT, "icons/toolbar/text-align/text-align-left.svg", "Align Left");
+        bindActionToButton(TextAction.ALIGN_CENTER, "icons/toolbar/text-align/text-align-center.svg", "Align Center");
+        bindActionToButton(TextAction.ALIGN_RIGHT, "icons/toolbar/text-align/text-align-right.svg", "Align Right");
+        bindActionToButton(TextAction.JUSTIFY, "icons/toolbar/text-align/text-align-justify.svg", "Justify");
+    }
 
-        bindActionToButton(
-            (AbstractButton) view.getTextEditorToolBar().getToolBarComponent(TextAction.STRIKETHROUGH),
-            textEditingActions.get(TextAction.STRIKETHROUGH),
-            new FlatSVGIcon("icons/toolbar/strikethrough.svg"),
-            "Strikethrough"
-        );
+    private void setUpStatusBar() {
+        StyledDocument document = model.getDocument();
+        document.addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                updateStatusBar();
+            }
 
-        bindActionToButton(
-            (AbstractButton) view.getTextEditorToolBar().getToolBarComponent(TextAction.SUBSCRIPT),
-            textEditingActions.get(TextAction.SUBSCRIPT),
-            new FlatSVGIcon("icons/toolbar/subscript.svg"),
-            "Subscript"
-        );
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                updateStatusBar();
+            }
 
-        bindActionToButton(
-            (AbstractButton) view.getTextEditorToolBar().getToolBarComponent(TextAction.SUPERSCRIPT),
-            textEditingActions.get(TextAction.SUPERSCRIPT),
-            new FlatSVGIcon("icons/toolbar/superscript.svg"),
-            "Superscript"
-        );
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                updateStatusBar();
+            }
+        });
+    }
 
-        bindActionToButton(
-            (AbstractButton) view.getTextEditorToolBar().getToolBarComponent(TextAction.CLEAR_FORMATTING),
-            textEditingActions.get(TextAction.CLEAR_FORMATTING),
-            new FlatSVGIcon(new FlatSVGIcon("icons/toolbar/text-clear-formatting.svg")),
-            "Clear Formatting"
-        );
+    private void updateStatusBar() {
+        String text = view.getEditorPane().getText();
+        int charCount = text.length();
 
-        bindActionToButton(
-            (AbstractButton) view.getTextEditorToolBar().getToolBarComponent(TextAction.ALIGN_LEFT),
-            textEditingActions.get(TextAction.ALIGN_LEFT),
-            new FlatSVGIcon("icons/toolbar/text-align/text-align-left.svg"),
-            "Align Left"
-        );
+        String trimmed = text.trim();
+        int wordCount = trimmed.isEmpty() ? 0 : trimmed.split("\\s+").length;
 
-        bindActionToButton(
-            (AbstractButton) view.getTextEditorToolBar().getToolBarComponent(TextAction.ALIGN_CENTER),
-            textEditingActions.get(TextAction.ALIGN_CENTER),
-            new FlatSVGIcon("icons/toolbar/text-align/text-align-center.svg"),
-            "Align Center"
-        );
-
-        bindActionToButton(
-            (AbstractButton) view.getTextEditorToolBar().getToolBarComponent(TextAction.ALIGN_RIGHT),
-            textEditingActions.get(TextAction.ALIGN_RIGHT),
-            new FlatSVGIcon("icons/toolbar/text-align/text-align-right.svg"),
-            "Align Right"
-        );
-
-        bindActionToButton(
-            (AbstractButton) view.getTextEditorToolBar().getToolBarComponent(TextAction.JUSTIFY),
-            textEditingActions.get(TextAction.JUSTIFY),
-            new FlatSVGIcon("icons/toolbar/text-align/text-align-justify.svg"),
-            "Justify"
-        );
-
+        view.getStatusBar().setCount(wordCount, charCount);
     }
 
 }

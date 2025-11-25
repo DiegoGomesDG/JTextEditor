@@ -15,23 +15,28 @@ public class ClearFormattingAction extends StyledEditorKit.StyledTextAction{
     @Override
     public void actionPerformed(ActionEvent e) {
         JEditorPane editor = getEditor(e);
-        if (editor == null) {
-            return;
-        }
+        if (editor == null) return;
 
         StyledDocument document = (StyledDocument) editor.getDocument();
         int start = editor.getSelectionStart();
         int end = editor.getSelectionEnd();
 
-        if (start == end) return; // no selection → do nothing
+        if (start == end) return;
 
-        // Clean all the formatting attributes
+        // Reset attributes to default
         SimpleAttributeSet sas = new SimpleAttributeSet();
 
+        // Default font
         StyleConstants.setFontFamily(sas, TextDefaults.FONT_FAMILY);
         StyleConstants.setFontSize(sas, TextDefaults.FONT_SIZE);
+
+        // Default color
         StyleConstants.setForeground(sas, TextDefaults.FONT_COLOR);
 
+        // Remove highlight (background)
+        sas.removeAttribute(StyleConstants.Background);
+
+        // Default toggles
         StyleConstants.setBold(sas, false);
         StyleConstants.setItalic(sas, false);
         StyleConstants.setUnderline(sas, false);
@@ -39,9 +44,9 @@ public class ClearFormattingAction extends StyledEditorKit.StyledTextAction{
         StyleConstants.setSuperscript(sas, false);
         StyleConstants.setSubscript(sas, false);
 
+        // Default alignment
         StyleConstants.setAlignment(sas, TextDefaults.TEXT_ALIGNMENT);
 
-        // Apply style
-        document.setCharacterAttributes(start, end - start, sas, false);
+        document.setCharacterAttributes(start, end - start, sas, true);
     }
 }

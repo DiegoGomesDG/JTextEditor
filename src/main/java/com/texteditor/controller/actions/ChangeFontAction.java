@@ -34,6 +34,5 @@ public class ChangeFontAction extends StyledEditorKit.StyledTextAction {
         MutableAttributeSet attrs = new SimpleAttributeSet();
         StyleConstants.setFontFamily(attrs, family);
         setCharacterAttributes(editor, attrs, false);
-
     }
 }

@@ -11,6 +11,7 @@ public class FontSizeAction extends StyledEditorKit.StyledTextAction {
 
     private final JEditorPane editor;
 
+
     public FontSizeAction(JEditorPane editor) {
         super("font-size");
         this.editor = editor;
@@ -18,21 +19,27 @@ public class FontSizeAction extends StyledEditorKit.StyledTextAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
         if (editor == null) return;
-
         int newSize = -1;
 
         if (e.getSource() instanceof JComboBox<?> combo) {
             Object item = combo.getSelectedItem();
             try {
-                newSize = Integer.parseInt(item.toString());
+                newSize = (Integer) item;
             } catch (Exception ignored) {}
         }
 
         if (newSize <= 0) {
             UIManager.getLookAndFeel().provideErrorFeedback(editor);
             return;
+        }
+
+        // Clamp the value
+        int clamped = Math.min(newSize, 250);
+
+        // If user entered something >250, reset the ComboBox UI
+        if (clamped != newSize && e.getSource() instanceof JComboBox<?> combo) {
+            combo.setSelectedItem(clamped);
         }
 
         MutableAttributeSet attrs = new SimpleAttributeSet();

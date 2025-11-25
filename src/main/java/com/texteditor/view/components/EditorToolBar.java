@@ -18,7 +18,7 @@ public class EditorToolBar extends JToolBar {
 
     private final JComboBox<String> paragraphStyle;
     private final JComboBox<String> fontStyles;
-    private final JComboBox<String> fontSize;
+    private final JComboBox<Integer> fontSize;
 
     private final JButton boldButton;
     private final JButton italicButton;
@@ -65,7 +65,7 @@ public class EditorToolBar extends JToolBar {
         toolBarComponents.put(TextAction.TEXT_FONT, fontStyles);
 
         /* Font Size JComboBox */
-        fontSize = new JComboBox<>(new String[]{"8", "9", "10", "11", "12", "14", "16", "18", "20", "24", "28", "32"});
+        fontSize = new JComboBox<>(new Integer[]{8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72});
         fontSize.setEditable(true);
         fontSize.setSelectedItem(TextDefaults.FONT_SIZE);
         toolBarComponents.put(TextAction.TEXT_SIZE, fontSize);
@@ -116,13 +116,14 @@ public class EditorToolBar extends JToolBar {
         textColor = new ColorSplitButton();
         textColor.setIcon(new FlatSVGIcon("icons/toolbar/text-color.svg"));
         textColor.setToolTipText("Text Color");
+        textColor.setColor(Color.RED); /* Change default color */
         toolBarComponents.put(TextAction.TEXT_COLOR, textColor);
 
         /* Text Highlighter Picker */
         highlightColor = new ColorSplitButton();
         highlightColor.setIcon(new FlatSVGIcon("icons/toolbar/highlight.svg"));
         highlightColor.setToolTipText("Highlight Color");
-        highlightColor.setColor(Color.BLUE); /* Change default color */
+        highlightColor.setColor(Color.YELLOW); /* Change default color */
         toolBarComponents.put(TextAction.HIGHLIGHT_COLOR, highlightColor);
 
         /* Align Left Button */

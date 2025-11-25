@@ -53,8 +53,6 @@ public class EditorStatusBar extends JPanel {
         gbc.weightx = 0;
         gbc.anchor = GridBagConstraints.EAST;
         add(zoomSlider, gbc);
-
-        setCount(10, 100);
     }
 
     public void setCount(int wordCount, int charCount) {

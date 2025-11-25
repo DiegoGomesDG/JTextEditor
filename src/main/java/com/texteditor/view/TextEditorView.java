@@ -54,4 +54,8 @@ public class TextEditorView extends JFrame {
         return textEditorToolBar;
     }
 
+    public EditorStatusBar getStatusBar() {
+        return statusBar;
+    }
+
 }
