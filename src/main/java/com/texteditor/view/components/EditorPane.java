@@ -1,5 +1,6 @@
 package com.texteditor.view.components;
 
+import com.texteditor.model.TextDefaults;
 import com.texteditor.view.custom.SelectionCaret;
 
 import javax.swing.*;
@@ -9,7 +10,7 @@ public class EditorPane extends JEditorPane {
 
     public EditorPane() {
         setBackground(new Color(20, 20, 20));
-        setFont(new Font("Times New Roman", Font.PLAIN, 16));
+        setFont(new Font(TextDefaults.FONT_FAMILY, Font.PLAIN, TextDefaults.FONT_SIZE));
         setCaret(new SelectionCaret());
     }
 

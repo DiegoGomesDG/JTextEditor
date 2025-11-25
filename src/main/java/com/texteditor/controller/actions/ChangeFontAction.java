@@ -7,12 +7,12 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledEditorKit;
 import java.awt.event.ActionEvent;
 
-public class FontSizeAction extends StyledEditorKit.StyledTextAction {
+public class ChangeFontAction extends StyledEditorKit.StyledTextAction {
 
     private final JEditorPane editor;
 
-    public FontSizeAction(JEditorPane editor) {
-        super("font-size");
+    public ChangeFontAction(JEditorPane editor) {
+        super("change-font");
         this.editor = editor;
     }
 
@@ -20,23 +20,19 @@ public class FontSizeAction extends StyledEditorKit.StyledTextAction {
     public void actionPerformed(ActionEvent e) {
 
         if (editor == null) return;
-
-        int newSize = -1;
+        String family = null;
 
         if (e.getSource() instanceof JComboBox<?> combo) {
             Object item = combo.getSelectedItem();
-            try {
-                newSize = Integer.parseInt(item.toString());
-            } catch (Exception ignored) {}
+            if (item != null)
+                family = item.toString();
         }
 
-        if (newSize <= 0) {
-            UIManager.getLookAndFeel().provideErrorFeedback(editor);
+        if (family == null || family.isEmpty())
             return;
-        }
 
         MutableAttributeSet attrs = new SimpleAttributeSet();
-        StyleConstants.setFontSize(attrs, newSize);
+        StyleConstants.setFontFamily(attrs, family);
         setCharacterAttributes(editor, attrs, false);
 
     }

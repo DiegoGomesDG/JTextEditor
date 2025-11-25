@@ -2,6 +2,7 @@ package com.texteditor.view.components;
 
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.texteditor.controller.actions.TextAction;
+import com.texteditor.model.TextDefaults;
 import com.texteditor.view.custom.ColorSplitButton;
 import com.texteditor.view.custom.FontsComboBox;
 
@@ -60,12 +61,13 @@ public class EditorToolBar extends JToolBar {
 
         /* Change to personalized */
         fontStyles = new FontsComboBox();
-        fontStyles.setSelectedItem("Times New Roman");
+        fontStyles.setSelectedItem(TextDefaults.FONT_FAMILY);
+        toolBarComponents.put(TextAction.TEXT_FONT, fontStyles);
 
         /* Font Size JComboBox */
         fontSize = new JComboBox<>(new String[]{"8", "9", "10", "11", "12", "14", "16", "18", "20", "24", "28", "32"});
         fontSize.setEditable(true);
-        fontSize.setSelectedItem("12");
+        fontSize.setSelectedItem(TextDefaults.FONT_SIZE);
         toolBarComponents.put(TextAction.TEXT_SIZE, fontSize);
 
         /* Bold Button */
@@ -120,7 +122,7 @@ public class EditorToolBar extends JToolBar {
         highlightColor = new ColorSplitButton();
         highlightColor.setIcon(new FlatSVGIcon("icons/toolbar/highlight.svg"));
         highlightColor.setToolTipText("Highlight Color");
-        highlightColor.setColor(Color.YELLOW); /* Change default color */
+        highlightColor.setColor(Color.BLUE); /* Change default color */
         toolBarComponents.put(TextAction.HIGHLIGHT_COLOR, highlightColor);
 
         /* Align Left Button */

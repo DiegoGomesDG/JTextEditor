@@ -4,6 +4,7 @@ import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.texteditor.controller.actions.*;
 import com.texteditor.model.TextDocumentModel;
 import com.texteditor.view.TextEditorView;
+import org.w3c.dom.Text;
 
 import javax.swing.*;
 import javax.swing.text.StyleConstants;
@@ -37,6 +38,7 @@ public class TextEditorController {
 
         /* Text Font, Size */
         textEditingActions.put(TextAction.TEXT_SIZE, new FontSizeAction(view.getEditorPane()));
+        textEditingActions.put(TextAction.TEXT_FONT, new ChangeFontAction(view.getEditorPane()));
 
         /* Text */
         textEditingActions.put(TextAction.BOLD, new StyledEditorKit.BoldAction());
@@ -45,6 +47,11 @@ public class TextEditorController {
         textEditingActions.put(TextAction.STRIKETHROUGH, new StrikeThroughAction());
         textEditingActions.put(TextAction.SUBSCRIPT, new SubscriptAction());
         textEditingActions.put(TextAction.SUPERSCRIPT, new SuperscriptAction());
+
+        /* Clear Formatting */
+        textEditingActions.put(TextAction.CLEAR_FORMATTING, new ClearFormattingAction());
+
+        /* Text Color */
 
 
         /* Text Alignment */
@@ -79,8 +86,11 @@ public class TextEditorController {
     }
 
     private void setUpToolBarActions() {
-        JComboBox<?> comboBox = (JComboBox<?>) view.getTextEditorToolBar().getToolBarComponent(TextAction.TEXT_SIZE);
-        comboBox.addActionListener(textEditingActions.get(TextAction.TEXT_SIZE));
+        JComboBox<?> sizeComboBox = (JComboBox<?>) view.getTextEditorToolBar().getToolBarComponent(TextAction.TEXT_SIZE);
+        sizeComboBox.addActionListener(textEditingActions.get(TextAction.TEXT_SIZE));
+
+        JComboBox<String> fontComboBox = (JComboBox<String>) view.getTextEditorToolBar().getToolBarComponent(TextAction.TEXT_FONT);
+        fontComboBox.addActionListener(textEditingActions.get(TextAction.TEXT_FONT));
 
         bindActionToButton(
             (AbstractButton) view.getTextEditorToolBar().getToolBarComponent(TextAction.BOLD),
@@ -122,6 +132,13 @@ public class TextEditorController {
             textEditingActions.get(TextAction.SUPERSCRIPT),
             new FlatSVGIcon("icons/toolbar/superscript.svg"),
             "Superscript"
+        );
+
+        bindActionToButton(
+            (AbstractButton) view.getTextEditorToolBar().getToolBarComponent(TextAction.CLEAR_FORMATTING),
+            textEditingActions.get(TextAction.CLEAR_FORMATTING),
+            new FlatSVGIcon(new FlatSVGIcon("icons/toolbar/text-clear-formatting.svg")),
+            "Clear Formatting"
         );
 
         bindActionToButton(

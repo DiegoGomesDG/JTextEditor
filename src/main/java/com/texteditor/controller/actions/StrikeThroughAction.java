@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.text.*;
 import java.awt.event.ActionEvent;
 
+/* https://stackoverflow.com/questions/23419238/how-to-strikethrough-selected-text-in-jtextpane-java */
 public class StrikeThroughAction extends StyledEditorKit.StyledTextAction {
 
     public StrikeThroughAction() {
