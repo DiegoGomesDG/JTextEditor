@@ -21,7 +21,7 @@ public class ZoomSlider extends JPanel {
         zoomPercentage = 100;
 
         /* Slider */
-        slider = new JSlider(20, 200, zoomPercentage);
+        slider = new JSlider(20, 400, zoomPercentage);
         slider.putClientProperty("JComponent.sizeVariant", "small"); // small preset
         slider.putClientProperty("JSlider.trackWidth", 4);           // thinner track
         slider.putClientProperty("JSlider.thumbSize", new Dimension(10, 10)); // smaller thumb

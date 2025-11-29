@@ -33,44 +33,41 @@ public class TitleBarToolBar extends JPanel {
         JPanel leftPanel = new JPanel(new BorderLayout());
         leftPanel.add(macFullWindowContentButtonsPlaceholder, BorderLayout.WEST);
 
-        {
-            /* ToolBar */
-            toolBar = new JToolBar();
+        /* ToolBar */
+        toolBar = new JToolBar();
 
-            /* redoButton */
-            redoButton = new JButton();
-            redoButton.setToolTipText("Redo");
-            redoButton.setIcon(new FlatSVGIcon("icons/redo.svg"));
+        /* redoButton */
+        redoButton = new JButton();
+        redoButton.setToolTipText("Redo");
+        redoButton.setIcon(new FlatSVGIcon("icons/redo.svg"));
 
-            /* undoButton */
-            undoButton = new JButton();
-            undoButton.setToolTipText("Undo");
-            undoButton.setIcon(new FlatSVGIcon("icons/undo.svg"));
+        /* undoButton */
+        undoButton = new JButton();
+        undoButton.setToolTipText("Undo");
+        undoButton.setIcon(new FlatSVGIcon("icons/undo.svg"));
 
-            /* cutButton */
-            cutButton = new JButton("");
-            cutButton.setToolTipText("Cut");
-            cutButton.setIcon(new FlatSVGIcon("icons/menu-cut.svg"));
+        /* cutButton */
+        cutButton = new JButton("");
+        cutButton.setToolTipText("Cut");
+        cutButton.setIcon(new FlatSVGIcon("icons/menu-cut.svg"));
 
-            /* copyButton */
-            copyButton = new JButton();
-            copyButton.setToolTipText("Copy");
-            copyButton.setIcon(new FlatSVGIcon("icons/copy.svg"));
+        /* copyButton */
+        copyButton = new JButton();
+        copyButton.setToolTipText("Copy");
+        copyButton.setIcon(new FlatSVGIcon("icons/copy.svg"));
 
-            /* pasteButton */
-            pasteButton = new JButton();
-            pasteButton.setToolTipText("Paste");
-            pasteButton.setIcon(new FlatSVGIcon("icons/menu-paste.svg"));
+        /* pasteButton */
+        pasteButton = new JButton();
+        pasteButton.setToolTipText("Paste");
+        pasteButton.setIcon(new FlatSVGIcon("icons/menu-paste.svg"));
 
-            /* Add to the Left Panel */
-            toolBar.add(undoButton);
-            toolBar.add(redoButton);
-            toolBar.addSeparator();
-            toolBar.add(cutButton);
-            toolBar.add(copyButton);
-            toolBar.add(pasteButton);
-
-        }
+        /* Add to the Left Panel */
+        toolBar.add(undoButton);
+        toolBar.add(redoButton);
+        toolBar.addSeparator();
+        toolBar.add(cutButton);
+        toolBar.add(copyButton);
+        toolBar.add(pasteButton);
 
         leftPanel.add(toolBar, BorderLayout.CENTER);
         add(leftPanel, BorderLayout.WEST);

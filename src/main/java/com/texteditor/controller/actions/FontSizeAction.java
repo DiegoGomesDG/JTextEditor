@@ -26,7 +26,9 @@ public class FontSizeAction extends StyledEditorKit.StyledTextAction {
             Object item = combo.getSelectedItem();
             try {
                 newSize = (Integer) item;
-            } catch (Exception ignored) {}
+            } catch (Exception ignored) {
+                /* The exception is just ignored, in case of some problems related to the casting */
+            }
         }
 
         if (newSize <= 0) {

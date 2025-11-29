@@ -83,4 +83,7 @@ public class EditorStatusBar extends JPanel {
         return charCount;
     }
 
+    public ZoomSlider getZoomSlider() {
+        return zoomSlider;
+    }
 }
