@@ -7,8 +7,8 @@ import javax.swing.text.StyledEditorKit;
 
 public class TextDocumentModel {
 
-    private final DefaultStyledDocument document;
-    private final ScaledEditorKit editorKit;
+    private DefaultStyledDocument document;
+    private ScaledEditorKit editorKit;
 
     public TextDocumentModel() {
         this.editorKit = new ScaledEditorKit();
@@ -21,5 +21,9 @@ public class TextDocumentModel {
 
     public ScaledEditorKit getEditorKit() {
         return editorKit;
+    }
+
+    public void setDocument(DefaultStyledDocument document) {
+        this.document = document;
     }
 }

@@ -5,7 +5,7 @@ import com.texteditor.controller.tools.StatusBarTool;
 import com.texteditor.model.TextDocumentModel;
 import com.texteditor.view.TextEditorView;
 import com.texteditor.controller.tools.ZoomTool;
-import com.texteditor.view.custom.SearchDialog;
+import com.texteditor.view.widgets.SearchDialog;
 
 import javax.swing.*;
 

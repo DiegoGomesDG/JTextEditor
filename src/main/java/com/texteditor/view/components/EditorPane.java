@@ -1,7 +1,7 @@
 package com.texteditor.view.components;
 
 import com.texteditor.model.TextDefaults;
-import com.texteditor.view.custom.SelectionCaret;
+import com.texteditor.view.widgets.SelectionCaret;
 
 import javax.swing.*;
 import java.awt.*;

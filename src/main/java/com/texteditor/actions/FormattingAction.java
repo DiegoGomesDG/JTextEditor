@@ -1,6 +1,6 @@
-package com.texteditor.controller.actions;
+package com.texteditor.actions;
 
-public enum TextAction {
+public enum FormattingAction {
     TEXT_STYLE,
     TEXT_FONT,
     TEXT_SIZE,

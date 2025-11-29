@@ -1,10 +1,10 @@
 package com.texteditor.view.components;
 
 import com.formdev.flatlaf.extras.FlatSVGIcon;
-import com.texteditor.controller.actions.TextAction;
+import com.texteditor.actions.FormattingAction;
 import com.texteditor.model.TextDefaults;
-import com.texteditor.view.custom.ColorSplitButton;
-import com.texteditor.view.custom.FontsComboBox;
+import com.texteditor.view.widgets.ColorSplitButton;
+import com.texteditor.view.widgets.FontsComboBox;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class EditorToolBar extends JToolBar {
 
-    private final EnumMap<TextAction, JComponent> toolBarComponents = new EnumMap<>(TextAction.class);
+    private final EnumMap<FormattingAction, JComponent> toolBarComponents = new EnumMap<>(FormattingAction.class);
     private static final Color BACKGROUND_COLOR = new Color(40,40,40);
 
     private final JComboBox<String> paragraphStyle;
@@ -62,105 +62,105 @@ public class EditorToolBar extends JToolBar {
         /* Change to personalized */
         fontStyles = new FontsComboBox();
         fontStyles.setSelectedItem(TextDefaults.FONT_FAMILY);
-        toolBarComponents.put(TextAction.TEXT_FONT, fontStyles);
+        toolBarComponents.put(FormattingAction.TEXT_FONT, fontStyles);
 
         /* Font Size JComboBox */
         fontSize = new JComboBox<>(new Integer[]{8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72});
         fontSize.setEditable(true);
         fontSize.setSelectedItem(TextDefaults.FONT_SIZE);
-        toolBarComponents.put(TextAction.TEXT_SIZE, fontSize);
+        toolBarComponents.put(FormattingAction.TEXT_SIZE, fontSize);
 
         /* Bold Button */
         boldButton = new JButton();
         boldButton.setIcon(new FlatSVGIcon("icons/toolbar/bold.svg"));
         boldButton.setToolTipText("Bold");
-        toolBarComponents.put(TextAction.BOLD, boldButton);
+        toolBarComponents.put(FormattingAction.BOLD, boldButton);
 
         /* Italic Button */
         italicButton = new JButton();
         italicButton.setIcon(new FlatSVGIcon("icons/toolbar/italic.svg"));
         italicButton.setToolTipText("Italic");
-        toolBarComponents.put(TextAction.ITALIC, italicButton);
+        toolBarComponents.put(FormattingAction.ITALIC, italicButton);
 
         /* Underline Button */
         underlineButton = new JButton();
         underlineButton.setIcon(new FlatSVGIcon("icons/toolbar/underline.svg"));
         underlineButton.setToolTipText("Underline");
-        toolBarComponents.put(TextAction.UNDERLINE, underlineButton);
+        toolBarComponents.put(FormattingAction.UNDERLINE, underlineButton);
 
         /* Strikethrough Button */
         strikethroughButton = new JButton();
         strikethroughButton.setIcon(new FlatSVGIcon("icons/toolbar/strikethrough.svg"));
         strikethroughButton.setToolTipText("Strikethrough");
-        toolBarComponents.put(TextAction.STRIKETHROUGH, strikethroughButton);
+        toolBarComponents.put(FormattingAction.STRIKETHROUGH, strikethroughButton);
 
         /* Subscript Button */
         subscriptButton = new JButton();
         subscriptButton.setIcon(new FlatSVGIcon("icons/toolbar/subscript.svg"));
         subscriptButton.setToolTipText("Subscript");
-        toolBarComponents.put(TextAction.SUBSCRIPT, subscriptButton);
+        toolBarComponents.put(FormattingAction.SUBSCRIPT, subscriptButton);
 
         /* Superscript Button */
         superscriptButton = new JButton();
         superscriptButton.setIcon(new FlatSVGIcon("icons/toolbar/superscript.svg"));
         superscriptButton.setToolTipText("Superscript");
-        toolBarComponents.put(TextAction.SUPERSCRIPT, superscriptButton);
+        toolBarComponents.put(FormattingAction.SUPERSCRIPT, superscriptButton);
 
         /* Clear Formatting Button*/
         clearFormattingButton = new JButton();
         clearFormattingButton.setIcon(new FlatSVGIcon("icons/toolbar/text-clear-formatting.svg"));
         clearFormattingButton.setToolTipText("Clear Formatting");
-        toolBarComponents.put(TextAction.CLEAR_FORMATTING, clearFormattingButton);
+        toolBarComponents.put(FormattingAction.CLEAR_FORMATTING, clearFormattingButton);
 
         /* Text Color Picker Button */
         textColor = new ColorSplitButton();
         textColor.setIcon(new FlatSVGIcon("icons/toolbar/text-color.svg"));
         textColor.setToolTipText("Text Color");
         textColor.setColor(Color.RED); /* Change default color */
-        toolBarComponents.put(TextAction.TEXT_COLOR, textColor);
+        toolBarComponents.put(FormattingAction.TEXT_COLOR, textColor);
 
         /* Text Highlighter Picker */
         highlightColor = new ColorSplitButton();
         highlightColor.setIcon(new FlatSVGIcon("icons/toolbar/highlight.svg"));
         highlightColor.setToolTipText("Highlight Color");
         highlightColor.setColor(Color.YELLOW); /* Change default color */
-        toolBarComponents.put(TextAction.HIGHLIGHT_COLOR, highlightColor);
+        toolBarComponents.put(FormattingAction.HIGHLIGHT_COLOR, highlightColor);
 
         /* Align Left Button */
         alignLeftButton = new JButton();
         alignLeftButton.setIcon(new FlatSVGIcon("icons/toolbar/text-align/text-align-left.svg"));
         alignLeftButton.setToolTipText("Align Left");
-        toolBarComponents.put(TextAction.ALIGN_LEFT, alignLeftButton);
+        toolBarComponents.put(FormattingAction.ALIGN_LEFT, alignLeftButton);
 
         /* Align Center Button */
         alignCenterButton = new JButton();
         alignCenterButton.setIcon(new FlatSVGIcon("icons/toolbar/text-align/text-align-center.svg"));
         alignCenterButton.setToolTipText("Align Center");
-        toolBarComponents.put(TextAction.ALIGN_CENTER, alignCenterButton);
+        toolBarComponents.put(FormattingAction.ALIGN_CENTER, alignCenterButton);
 
         /* Align Right Button */
         alignRightButton = new JButton();
         alignRightButton.setIcon(new FlatSVGIcon("icons/toolbar/text-align/text-align-right.svg"));
         alignRightButton.setToolTipText("Align Right");
-        toolBarComponents.put(TextAction.ALIGN_RIGHT, alignRightButton);
+        toolBarComponents.put(FormattingAction.ALIGN_RIGHT, alignRightButton);
 
         /* Justify Button */
         justifyButton = new JButton();
         justifyButton.setIcon(new FlatSVGIcon("icons/toolbar/text-align/text-align-justify.svg"));
         justifyButton.setToolTipText("Justify");
-        toolBarComponents.put(TextAction.JUSTIFY, justifyButton);
+        toolBarComponents.put(FormattingAction.JUSTIFY, justifyButton);
 
         /* Create Bullet List Button */
         bulletListButton = new JButton();
         bulletListButton.setIcon(new FlatSVGIcon("icons/toolbar/bullet-list.svg"));
         bulletListButton.setToolTipText("Bullets");
-        toolBarComponents.put(TextAction.BULLET_LIST, bulletListButton);
+        toolBarComponents.put(FormattingAction.BULLET_LIST, bulletListButton);
 
         /* Create Numbered List Button */
         numberedListButton = new JButton();
         numberedListButton.setIcon(new FlatSVGIcon("icons/toolbar/list-number.svg"));
         numberedListButton.setToolTipText("Numbering");
-        toolBarComponents.put(TextAction.NUMBERED_LIST, numberedListButton);
+        toolBarComponents.put(FormattingAction.NUMBERED_LIST, numberedListButton);
 
 
         /* Add to the toolbar */
@@ -207,11 +207,11 @@ public class EditorToolBar extends JToolBar {
         return BACKGROUND_COLOR;
     }
 
-    public Map<TextAction, JComponent> getToolBarComponents() {
+    public Map<FormattingAction, JComponent> getToolBarComponents() {
         return toolBarComponents;
     }
 
-    public JComponent getToolBarComponent(TextAction action) {
+    public JComponent getToolBarComponent(FormattingAction action) {
         return toolBarComponents.get(action);
     }
 }

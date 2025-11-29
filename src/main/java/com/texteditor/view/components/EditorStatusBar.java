@@ -1,6 +1,6 @@
 package com.texteditor.view.components;
 
-import com.texteditor.view.custom.ZoomSlider;
+import com.texteditor.view.widgets.ZoomSlider;
 
 import javax.swing.*;
 import java.awt.*;

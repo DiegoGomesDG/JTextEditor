@@ -1,4 +1,4 @@
-package com.texteditor.view.custom;
+package com.texteditor.view.widgets;
 
 import javax.swing.*;
 import javax.swing.text.DefaultCaret;

@@ -1,9 +1,10 @@
 package com.texteditor.controller.tools;
 
 import com.formdev.flatlaf.extras.FlatSVGIcon;
+import com.texteditor.actions.FormattingAction;
 import com.texteditor.controller.actions.*;
 import com.texteditor.view.TextEditorView;
-import com.texteditor.view.custom.ColorSplitButton;
+import com.texteditor.view.widgets.ColorSplitButton;
 
 import javax.swing.*;
 import javax.swing.text.StyleConstants;
@@ -14,7 +15,7 @@ import java.util.Map;
 
 public class FormattingTool {
     private final TextEditorView view;
-    private final Map<TextAction, Action> textEditingActions = new EnumMap<>(TextAction.class);
+    private final Map<FormattingAction, Action> textEditingActions = new EnumMap<>(FormattingAction.class);
 
     public FormattingTool(TextEditorView view) {
         this.view = view;
@@ -25,69 +26,69 @@ public class FormattingTool {
 
     private void registerActions() {
         /* Text Font, Size */
-        textEditingActions.put(TextAction.TEXT_SIZE, new FontSizeAction(view.getEditorPane()));
-        textEditingActions.put(TextAction.TEXT_FONT, new ChangeFontAction(view.getEditorPane()));
+        textEditingActions.put(FormattingAction.TEXT_SIZE, new FontSizeAction(view.getEditorPane()));
+        textEditingActions.put(FormattingAction.TEXT_FONT, new ChangeFontAction(view.getEditorPane()));
 
         /* Text */
-        textEditingActions.put(TextAction.BOLD, new StyledEditorKit.BoldAction());
-        textEditingActions.put(TextAction.ITALIC, new StyledEditorKit.ItalicAction());
-        textEditingActions.put(TextAction.UNDERLINE, new StyledEditorKit.UnderlineAction());
-        textEditingActions.put(TextAction.STRIKETHROUGH, new StrikeThroughAction());
-        textEditingActions.put(TextAction.SUBSCRIPT, new SubscriptAction());
-        textEditingActions.put(TextAction.SUPERSCRIPT, new SuperscriptAction());
+        textEditingActions.put(FormattingAction.BOLD, new StyledEditorKit.BoldAction());
+        textEditingActions.put(FormattingAction.ITALIC, new StyledEditorKit.ItalicAction());
+        textEditingActions.put(FormattingAction.UNDERLINE, new StyledEditorKit.UnderlineAction());
+        textEditingActions.put(FormattingAction.STRIKETHROUGH, new StrikeThroughAction());
+        textEditingActions.put(FormattingAction.SUBSCRIPT, new SubscriptAction());
+        textEditingActions.put(FormattingAction.SUPERSCRIPT, new SuperscriptAction());
 
         /* Clear Formatting */
-        textEditingActions.put(TextAction.CLEAR_FORMATTING, new ClearFormattingAction());
+        textEditingActions.put(FormattingAction.CLEAR_FORMATTING, new ClearFormattingAction());
 
         /* Text Color */
-        textEditingActions.put(TextAction.TEXT_COLOR, new TextColorAction(view.getEditorPane()));
-        textEditingActions.put(TextAction.HIGHLIGHT_COLOR, new HighlightColorAction(view.getEditorPane()));
+        textEditingActions.put(FormattingAction.TEXT_COLOR, new TextColorAction(view.getEditorPane()));
+        textEditingActions.put(FormattingAction.HIGHLIGHT_COLOR, new HighlightColorAction(view.getEditorPane()));
 
         /* Text Alignment */
-        textEditingActions.put(TextAction.ALIGN_LEFT, new StyledEditorKit.AlignmentAction(
+        textEditingActions.put(FormattingAction.ALIGN_LEFT, new StyledEditorKit.AlignmentAction(
             "left",
             StyleConstants.ALIGN_LEFT
         ));
-        textEditingActions.put(TextAction.ALIGN_CENTER, new StyledEditorKit.AlignmentAction(
+        textEditingActions.put(FormattingAction.ALIGN_CENTER, new StyledEditorKit.AlignmentAction(
             "center",
             StyleConstants.ALIGN_CENTER
         ));
-        textEditingActions.put(TextAction.ALIGN_RIGHT, new StyledEditorKit.AlignmentAction(
+        textEditingActions.put(FormattingAction.ALIGN_RIGHT, new StyledEditorKit.AlignmentAction(
             "right",
             StyleConstants.ALIGN_RIGHT
         ));
-        textEditingActions.put(TextAction.JUSTIFY, new StyledEditorKit.AlignmentAction(
+        textEditingActions.put(FormattingAction.JUSTIFY, new StyledEditorKit.AlignmentAction(
             "justified",
             StyleConstants.ALIGN_JUSTIFIED
         ));
     }
 
     private void setUpToolBarActions() {
-        bindActionToComboBox(TextAction.TEXT_SIZE);
-        bindActionToComboBox(TextAction.TEXT_FONT);
+        bindActionToComboBox(FormattingAction.TEXT_SIZE);
+        bindActionToComboBox(FormattingAction.TEXT_FONT);
 
-        bindActionToButton(TextAction.BOLD, "icons/toolbar/bold.svg", "Bold");
-        bindActionToButton(TextAction.ITALIC, "icons/toolbar/italic.svg", "Italic");
-        bindActionToButton(TextAction.UNDERLINE, "icons/toolbar/underline.svg", "Underline");
-        bindActionToButton(TextAction.STRIKETHROUGH,  "icons/toolbar/strikethrough.svg", "Strikethrough");
-        bindActionToButton(TextAction.SUBSCRIPT, "icons/toolbar/subscript.svg", "Subscript");
-        bindActionToButton(TextAction.SUPERSCRIPT, "icons/toolbar/superscript.svg", "Superscript");
-        bindActionToButton(TextAction.CLEAR_FORMATTING, "icons/toolbar/text-clear-formatting.svg", "Clear Formatting");
+        bindActionToButton(FormattingAction.BOLD, "icons/toolbar/bold.svg", "Bold");
+        bindActionToButton(FormattingAction.ITALIC, "icons/toolbar/italic.svg", "Italic");
+        bindActionToButton(FormattingAction.UNDERLINE, "icons/toolbar/underline.svg", "Underline");
+        bindActionToButton(FormattingAction.STRIKETHROUGH,  "icons/toolbar/strikethrough.svg", "Strikethrough");
+        bindActionToButton(FormattingAction.SUBSCRIPT, "icons/toolbar/subscript.svg", "Subscript");
+        bindActionToButton(FormattingAction.SUPERSCRIPT, "icons/toolbar/superscript.svg", "Superscript");
+        bindActionToButton(FormattingAction.CLEAR_FORMATTING, "icons/toolbar/text-clear-formatting.svg", "Clear Formatting");
 
         /* Text Color */
-        bindActionsToColorSplitButton(TextAction.TEXT_COLOR);
+        bindActionsToColorSplitButton(FormattingAction.TEXT_COLOR);
 
         /* Highlight Color */
-        bindActionsToColorSplitButton(TextAction.HIGHLIGHT_COLOR);
+        bindActionsToColorSplitButton(FormattingAction.HIGHLIGHT_COLOR);
 
         /* Text Alignment */
-        bindActionToButton(TextAction.ALIGN_LEFT, "icons/toolbar/text-align/text-align-left.svg", "Align Left");
-        bindActionToButton(TextAction.ALIGN_CENTER, "icons/toolbar/text-align/text-align-center.svg", "Align Center");
-        bindActionToButton(TextAction.ALIGN_RIGHT, "icons/toolbar/text-align/text-align-right.svg", "Align Right");
-        bindActionToButton(TextAction.JUSTIFY, "icons/toolbar/text-align/text-align-justify.svg", "Justify");
+        bindActionToButton(FormattingAction.ALIGN_LEFT, "icons/toolbar/text-align/text-align-left.svg", "Align Left");
+        bindActionToButton(FormattingAction.ALIGN_CENTER, "icons/toolbar/text-align/text-align-center.svg", "Align Center");
+        bindActionToButton(FormattingAction.ALIGN_RIGHT, "icons/toolbar/text-align/text-align-right.svg", "Align Right");
+        bindActionToButton(FormattingAction.JUSTIFY, "icons/toolbar/text-align/text-align-justify.svg", "Justify");
     }
 
-    private void bindActionToButton(TextAction actionKey, String iconPath, String tooltip) {
+    private void bindActionToButton(FormattingAction actionKey, String iconPath, String tooltip) {
         AbstractButton button =
             (AbstractButton) view.getEditorToolBar().getToolBarComponent(actionKey);
 
@@ -99,7 +100,7 @@ public class FormattingTool {
         button.setToolTipText(tooltip);
     }
 
-    private void bindActionsToColorSplitButton(TextAction actionKey) {
+    private void bindActionsToColorSplitButton(FormattingAction actionKey) {
         ColorSplitButton button = (ColorSplitButton) view.getEditorToolBar().getToolBarComponent(actionKey);
 
         button.getDropButton().addActionListener(e -> {
@@ -123,7 +124,7 @@ public class FormattingTool {
         });
     }
 
-    private void bindActionToComboBox(TextAction actionKey) {
+    private void bindActionToComboBox(FormattingAction actionKey) {
         JComboBox<?> comboBox = (JComboBox<?>) view.getEditorToolBar().getToolBarComponent(actionKey);
         Action action = textEditingActions.get(actionKey);
         comboBox.addActionListener(action);
