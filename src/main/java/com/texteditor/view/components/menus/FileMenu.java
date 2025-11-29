@@ -9,7 +9,7 @@ public class FileMenu extends JMenu {
 
     private final JMenuItem newDocumentMenuItem;
     private final JMenuItem openDocumentMenuItem;
-    private final JMenu openRecentMenu;
+    private final JMenu     openRecentMenu;
 
     private final JMenuItem saveMenuItem;
     private final JMenuItem saveAsMenuItem;
@@ -54,7 +54,6 @@ public class FileMenu extends JMenu {
         /* propertiesMenuItem */
         propertiesMenuItem = new JMenuItem("Properties");
         add(propertiesMenuItem);
-
     }
 
 }

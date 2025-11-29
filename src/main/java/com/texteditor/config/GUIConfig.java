@@ -22,6 +22,7 @@ public class GUIConfig {
             JFrame.setDefaultLookAndFeelDecorated(true);
             JDialog.setDefaultLookAndFeelDecorated(true);
         }
+
     }
 
     public static void configureMacOSWindow(JFrame frame) {

@@ -66,7 +66,9 @@ public class EditMenu extends JMenu {
         findMenuItem.setMnemonic('F');
         findMenuItem.setIcon(new FlatSVGIcon("icons/search.svg"));
         add(findMenuItem);
-
     }
 
+    public JMenuItem getFindMenuItem() {
+        return findMenuItem;
+    }
 }

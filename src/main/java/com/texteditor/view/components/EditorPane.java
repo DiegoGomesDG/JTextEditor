@@ -14,4 +14,9 @@ public class EditorPane extends JEditorPane {
         setCaret(new SelectionCaret());
     }
 
+    @Override
+    public boolean getScrollableTracksViewportWidth() {
+        return true;   // forces wrapping to viewport width
+    }
+
 }

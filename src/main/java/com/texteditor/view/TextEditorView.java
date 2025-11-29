@@ -10,10 +10,10 @@ import java.awt.*;
 
 public class TextEditorView extends JFrame {
 
-    private EditorToolBar textEditorToolBar;
-    private EditorStatusBar statusBar;
+    private EditorToolBar editorToolBar;
+    private EditorStatusBar editorStatusBar;
     private EditorPane editorPane;
-    private EditorMenuBar menuBar;
+    private EditorMenuBar editorMenuBar;
 
     public TextEditorView(String title) {
         setTitle(title);
@@ -24,22 +24,27 @@ public class TextEditorView extends JFrame {
         setLocationRelativeTo(null); /* Center the window */
 
         /* Create Components */
-        textEditorToolBar = new EditorToolBar();
-        statusBar = new EditorStatusBar();
+        editorToolBar = new EditorToolBar();
+        editorStatusBar = new EditorStatusBar();
         editorPane = new EditorPane();
-        menuBar = new EditorMenuBar();
+        editorMenuBar = new EditorMenuBar();
 
+        JScrollPane scroll = new JScrollPane(editorPane);
         setLayout(new BorderLayout());
 
         /* Add to the layout */
-        add(textEditorToolBar, BorderLayout.NORTH);
-        add(statusBar, BorderLayout.SOUTH);
-        add(editorPane, BorderLayout.CENTER);
+        add(editorToolBar, BorderLayout.NORTH);
+        add(editorStatusBar, BorderLayout.SOUTH);
+        add(scroll, BorderLayout.CENTER);
 
-        setJMenuBar(menuBar);
+        setJMenuBar(editorMenuBar);
 
         /* Call the method to set specific MacOS GUI features */
         GUIConfig.configureMacOSWindow(this);
+    }
+
+    public JFrame getFrame() {
+        return this;
     }
 
     public TextEditorView() {
@@ -50,12 +55,16 @@ public class TextEditorView extends JFrame {
         return editorPane;
     }
 
-    public EditorToolBar getTextEditorToolBar() {
-        return textEditorToolBar;
+    public EditorToolBar getEditorToolBar() {
+        return editorToolBar;
     }
 
-    public EditorStatusBar getStatusBar() {
-        return statusBar;
+    public EditorStatusBar getEditorStatusBar() {
+        return editorStatusBar;
+    }
+
+    public EditorMenuBar getEditorMenuBar() {
+        return editorMenuBar;
     }
 
 }

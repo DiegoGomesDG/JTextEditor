@@ -1,15 +1,17 @@
 package com.texteditor.model;
 
+import com.texteditor.editorkit.scaling.ScaledEditorKit;
+
 import javax.swing.text.DefaultStyledDocument;
 import javax.swing.text.StyledEditorKit;
 
 public class TextDocumentModel {
 
     private final DefaultStyledDocument document;
-    private final StyledEditorKit editorKit;
+    private final ScaledEditorKit editorKit;
 
     public TextDocumentModel() {
-        this.editorKit = new StyledEditorKit();
+        this.editorKit = new ScaledEditorKit();
         this.document = (DefaultStyledDocument) editorKit.createDefaultDocument();
     }
 
@@ -17,7 +19,7 @@ public class TextDocumentModel {
         return document;
     }
 
-    public StyledEditorKit getEditorKit() {
+    public ScaledEditorKit getEditorKit() {
         return editorKit;
     }
 }

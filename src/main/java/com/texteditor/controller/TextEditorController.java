@@ -5,6 +5,7 @@ import com.texteditor.controller.actions.*;
 import com.texteditor.model.TextDocumentModel;
 import com.texteditor.view.TextEditorView;
 import com.texteditor.view.custom.ColorSplitButton;
+import com.texteditor.view.custom.SearchDialog;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -34,11 +35,21 @@ public class TextEditorController {
         view.getEditorPane().setEditorKit(model.getEditorKit());
         view.getEditorPane().setDocument(model.getDocument());
 
-        updateStatusBar(); /* Update to status bar for the new document */
+        view.getEditorPane().getDocument().putProperty("ZOOM_FACTOR", 1.5);
 
+        /* Setting up the different actions and dynamic components */
         setUpTextEditingActions();
         setUpToolBarActions();
         setUpStatusBar();
+
+        JMenuItem findItem = view.getEditorMenuBar().getEditMenu().getFindMenuItem();
+        findItem.addActionListener(e -> {
+            SearchDialog searchDialog = new SearchDialog(view.getFrame());
+            searchDialog.setVisible(true);
+        });
+
+        /* Trigger actino*/
+        updateStatusBar(); /* Update to status bar for the new document */
     }
 
     private void setUpTextEditingActions() {
@@ -84,7 +95,7 @@ public class TextEditorController {
 
     private void bindActionToButton(TextAction actionKey, String iconPath, String tooltip) {
         AbstractButton button =
-            (AbstractButton) view.getTextEditorToolBar().getToolBarComponent(actionKey);
+            (AbstractButton) view.getEditorToolBar().getToolBarComponent(actionKey);
 
         Action action = textEditingActions.get(actionKey);
 
@@ -96,7 +107,7 @@ public class TextEditorController {
 
     /* TODO: Checking type */
     private void bindActionsToColorSplitButton(TextAction actionKey) {
-        ColorSplitButton button = (ColorSplitButton) view.getTextEditorToolBar().getToolBarComponent(actionKey);
+        ColorSplitButton button = (ColorSplitButton) view.getEditorToolBar().getToolBarComponent(actionKey);
 
         button.getDropButton().addActionListener(e -> {
             Color newColor = JColorChooser.showDialog(null, "Text Color", button.getColor());
@@ -120,7 +131,7 @@ public class TextEditorController {
     }
 
     private void bindActionToComboBox(TextAction actionKey) {
-        JComboBox<?> comboBox = (JComboBox<?>) view.getTextEditorToolBar().getToolBarComponent(actionKey);
+        JComboBox<?> comboBox = (JComboBox<?>) view.getEditorToolBar().getToolBarComponent(actionKey);
         Action action = textEditingActions.get(actionKey);
         comboBox.addActionListener(action);
     }
@@ -177,7 +188,7 @@ public class TextEditorController {
         String trimmed = text.trim();
         int wordCount = trimmed.isEmpty() ? 0 : trimmed.split("\\s+").length;
 
-        view.getStatusBar().setCount(wordCount, charCount);
+        view.getEditorStatusBar().setCount(wordCount, charCount);
     }
 
 }

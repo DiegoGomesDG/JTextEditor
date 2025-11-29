@@ -19,6 +19,7 @@ public class ZoomSlider extends JPanel {
         setOpaque(true);
 
         zoomPercentage = 100;
+
         /* Slider */
         slider = new JSlider(20, 200, zoomPercentage);
         slider.putClientProperty("JComponent.sizeVariant", "small"); // small preset
@@ -104,4 +105,13 @@ public class ZoomSlider extends JPanel {
             }
         });
     }
+
+    public double getZoomFactor() {
+        return slider.getValue() / 100.0;
+    }
+
+    public JSlider getSlider() {
+        return slider;
+    }
+
 }
