@@ -15,9 +15,9 @@ public class TextEditorView extends JFrame {
     private EditorPane editorPane;
     private EditorMenuBar editorMenuBar;
 
-    public TextEditorView(String title) {
-        setTitle(title);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    public TextEditorView() {
+        setTitle("Untitled");
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         setSize(950, 600);
         setMinimumSize(new Dimension(870, 300));
         setResizable(true);
@@ -47,9 +47,6 @@ public class TextEditorView extends JFrame {
         return this;
     }
 
-    public TextEditorView() {
-        this("Document 1");
-    }
 
     public JEditorPane getEditorPane() {
         return editorPane;

@@ -15,12 +15,6 @@ public class TextEditor {
         /* Configure OS-specific GUI properties */
         GUIConfig.configure();
 
-        /* Configure Look and Feel */
-        //UIManager.put("ScrollPane.focusWidth", 0);
-        //UIManager.put("ScrollPane.innerFocusWidth", 0);
-        //UIManager.put("ScrollPane.innerOutlineWidth", 0);
-
-
         FlatLaf.setGlobalExtraDefaults(Collections.singletonMap("@accentColor", "#F00"));
         FlatMacDarkLaf.setup();
 
