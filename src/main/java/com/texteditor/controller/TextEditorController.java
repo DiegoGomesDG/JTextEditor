@@ -1,11 +1,12 @@
 package com.texteditor.controller;
 
+import com.texteditor.actions.EditAction;
+import com.texteditor.controller.tools.FindTool;
 import com.texteditor.controller.tools.FormattingTool;
 import com.texteditor.controller.tools.StatusBarTool;
 import com.texteditor.model.TextDocumentModel;
 import com.texteditor.view.TextEditorView;
 import com.texteditor.controller.tools.ZoomTool;
-import com.texteditor.view.widgets.SearchDialog;
 
 import javax.swing.*;
 
@@ -29,13 +30,8 @@ public class TextEditorController {
         new FormattingTool(view);
         new StatusBarTool(view, model);
         new ZoomTool(view, model);
+        new FindTool(view, model.getDocument());
 
-        /* Experimental */
-        JMenuItem findItem = view.getEditorMenuBar().getEditMenu().getFindMenuItem();
-        findItem.addActionListener(e -> {
-            SearchDialog searchDialog = new SearchDialog(view.getFrame());
-            searchDialog.setVisible(true);
-        });
     }
 
 }

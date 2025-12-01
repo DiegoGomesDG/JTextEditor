@@ -1,12 +1,16 @@
 package com.texteditor.view.components.menus;
 
 import com.formdev.flatlaf.extras.FlatSVGIcon;
+import com.texteditor.actions.EditAction;
+import com.texteditor.actions.FormattingAction;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.EnumMap;
 
 public class EditMenu extends JMenu {
+    private final EnumMap<EditAction, JMenuItem> menuItems = new EnumMap<>(EditAction.class);
 
     private final JMenuItem undoMenuItem;
     private final JMenuItem redoMenuItem;
@@ -27,6 +31,7 @@ public class EditMenu extends JMenu {
         undoMenuItem.setMnemonic('U');
         undoMenuItem.setIcon(new FlatSVGIcon("icons/undo.svg"));
         add(undoMenuItem);
+        menuItems.put(EditAction.UNDO, undoMenuItem);
 
         /* redoMenuItem */
         redoMenuItem = new JMenuItem("Redo");
@@ -34,6 +39,7 @@ public class EditMenu extends JMenu {
         redoMenuItem.setMnemonic('R');
         redoMenuItem.setIcon(new FlatSVGIcon("icons/redo.svg"));
         add(redoMenuItem);
+        menuItems.put(EditAction.REDO, redoMenuItem);
 
         addSeparator();
 
@@ -43,6 +49,7 @@ public class EditMenu extends JMenu {
         cutMenuItem.setMnemonic('X');
         cutMenuItem.setIcon(new FlatSVGIcon("icons/menu-cut.svg"));
         add(cutMenuItem);
+        menuItems.put(EditAction.CUT, cutMenuItem);
 
         /* copyMenuItem */
         copyMenuItem = new JMenuItem("Copy");
@@ -50,6 +57,7 @@ public class EditMenu extends JMenu {
         copyMenuItem.setMnemonic('C');
         copyMenuItem.setIcon(new FlatSVGIcon("icons/copy.svg"));
         add(copyMenuItem);
+        menuItems.put(EditAction.COPY, copyMenuItem);
 
         /* pasteMenuItem */
         pasteMenuItem = new JMenuItem("Paste");
@@ -57,6 +65,7 @@ public class EditMenu extends JMenu {
         pasteMenuItem.setMnemonic('P');
         pasteMenuItem.setIcon(new FlatSVGIcon("icons/menu-paste.svg"));
         add(pasteMenuItem);
+        menuItems.put(EditAction.PASTE, pasteMenuItem);
 
         addSeparator();
 
@@ -66,9 +75,10 @@ public class EditMenu extends JMenu {
         findMenuItem.setMnemonic('F');
         findMenuItem.setIcon(new FlatSVGIcon("icons/search.svg"));
         add(findMenuItem);
+        menuItems.put(EditAction.FIND, findMenuItem);
     }
 
-    public JMenuItem getFindMenuItem() {
-        return findMenuItem;
+    public JMenuItem getMenuItem(EditAction action) {
+        return menuItems.get(action);
     }
 }

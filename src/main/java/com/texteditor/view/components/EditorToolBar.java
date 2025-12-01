@@ -207,10 +207,6 @@ public class EditorToolBar extends JToolBar {
         return BACKGROUND_COLOR;
     }
 
-    public Map<FormattingAction, JComponent> getToolBarComponents() {
-        return toolBarComponents;
-    }
-
     public JComponent getToolBarComponent(FormattingAction action) {
         return toolBarComponents.get(action);
     }

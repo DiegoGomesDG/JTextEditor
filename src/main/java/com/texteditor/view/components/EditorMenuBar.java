@@ -24,7 +24,7 @@ public class EditorMenuBar extends JMenuBar {
         add(formatMenu);
     }
 
-    public JMenu getFileMenu() {
+    public FileMenu getFileMenu() {
         return fileMenu;
     }
 

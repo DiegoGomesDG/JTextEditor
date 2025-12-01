@@ -7,13 +7,13 @@ import com.formdev.flatlaf.icons.FlatSearchIcon;
 import javax.swing.*;
 import java.awt.*;
 
-public class SearchDialog extends JDialog {
+public class FindDialog extends JDialog {
 
-    JButton nextButton;
-    JButton previousButton;
-    JTextField searchField;
+    private JButton nextButton;
+    private JButton previousButton;
+    private JTextField searchField;
 
-    public SearchDialog(Frame frame) {
+    public FindDialog(Frame frame) {
         /* Initialize JDialog */
         super(frame, "Find", false);
 
@@ -53,6 +53,21 @@ public class SearchDialog extends JDialog {
 
         pack();
         setLocationRelativeTo(frame);
+    }
 
+    public JTextField getSearchField() {
+        return searchField;
+    }
+
+    public String getSearchText() {
+        return searchField.getText();
+    }
+
+    public JButton getPreviousButton() {
+        return previousButton;
+    }
+
+    public JButton getNextButton() {
+        return nextButton;
     }
 }
