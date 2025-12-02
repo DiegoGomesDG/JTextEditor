@@ -19,7 +19,7 @@ public class FileController {
         this.view = view;
         this.lifecycle = lifecycle;
 
-        attachListeners();
+        //attachListeners();
     }
 
     private void attachListeners() {
@@ -54,6 +54,24 @@ public class FileController {
 
             lifecycle.markSaved();
             lifecycle.updateWindowTitle(file);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(view.getFrame(),
+                "Failed to open document:\n" + e.getMessage(),
+                "Open Error",
+                JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void openDocument(File file) {
+        try {
+            LoadSaveService.load(model, file);
+
+            model.setFile(file);
+            view.getEditorPane().setDocument(model.getDocument());
+
+            lifecycle.markSaved();
+            lifecycle.updateWindowTitle(file);
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(view.getFrame(),
                 "Failed to open document:\n" + e.getMessage(),

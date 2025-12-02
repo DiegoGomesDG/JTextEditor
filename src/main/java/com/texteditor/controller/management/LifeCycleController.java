@@ -41,16 +41,14 @@ public class LifeCycleController {
 
     public void markUnsaved() {
         if (!isUnsaved) {
-            isUnsaved = false;
+            isUnsaved = true;
             updateWindowTitle(model.getFile(), true);
         }
     }
 
     public void markSaved() {
-        if (isUnsaved) {
-            isUnsaved = false;
-            updateWindowTitle(model.getFile());
-        }
+        isUnsaved = false;
+        updateWindowTitle(model.getFile(), false);
     }
 
     public void updateWindowTitle(File file) {

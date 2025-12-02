@@ -1,11 +1,13 @@
 package com.texteditor.controller;
 
 import com.texteditor.actions.EditAction;
+import com.texteditor.actions.FileAction;
 import com.texteditor.controller.management.FileController;
 import com.texteditor.controller.management.LifeCycleController;
 import com.texteditor.controller.tools.FindTool;
 import com.texteditor.controller.tools.FormattingTool;
 import com.texteditor.controller.tools.StatusBarTool;
+import com.texteditor.manager.DocumentManager;
 import com.texteditor.model.TextDocumentModel;
 import com.texteditor.view.TextEditorView;
 import com.texteditor.controller.tools.ZoomTool;
@@ -13,6 +15,7 @@ import com.texteditor.controller.tools.ZoomTool;
 import javax.swing.undo.UndoManager;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 
 /* Some discussions concerning separation of concerns for the MVC Architecture
 * https://stackoverflow.com/questions/5217611/the-mvc-pattern-and-swing
@@ -44,26 +47,29 @@ public class TextEditorController {
         new ZoomTool(view, model);
         new FindTool(view, model.getDocument());
 
-        /* Setup Undo Manager */
-        undoManager = new UndoManager();
         setupUndoManager();
-
-        /* Add window listener to allow the user to close the program or prompt for saving or discard the file */
-        setupWindowListener();
+        setupMenuListeners();
     }
 
-    private void setupWindowListener() {
-        view.getFrame().addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                if (lifeCycleController.handleWindowClosing(fileController)) {
-                    view.getFrame().dispose(); // or manager.unregister(...)
-                }
-            }
-        });
+    private void setupMenuListeners() {
+
+        // New Window → via DocumentManager
+        view.getEditorMenuBar().getFileMenu().getMenuItem(FileAction.NEW_DOCUMENT)
+            .addActionListener(e -> DocumentManager.getInstance().newDocument());
+
+        // Local document file actions
+        view.getEditorMenuBar().getFileMenu().getMenuItem(FileAction.OPEN_DOCUMENT)
+            .addActionListener(e -> DocumentManager.getInstance().openDocument());
+
+        view.getEditorMenuBar().getFileMenu().getMenuItem(FileAction.SAVE)
+            .addActionListener(e -> fileController.save());
+
+        view.getEditorMenuBar().getFileMenu().getMenuItem(FileAction.SAVE_AS)
+            .addActionListener(e -> fileController.saveAs());
     }
 
     private void setupUndoManager() {
+        undoManager = new UndoManager();
         view.getEditorPane().getDocument().addUndoableEditListener(undoManager);
 
         view.getEditorMenuBar().getEditMenu().getMenuItem(EditAction.UNDO).addActionListener(
@@ -72,5 +78,21 @@ public class TextEditorController {
         view.getEditorMenuBar().getEditMenu().getMenuItem(EditAction.REDO).addActionListener(
             e -> undoManager.redo()
         );
+    }
+
+    public boolean requestCloseWindow() {
+        return lifeCycleController.handleWindowClosing(fileController);
+    }
+
+    public boolean requestWindowClose() {
+        return lifeCycleController.handleWindowClosing(fileController);
+    }
+
+    public FileController getFileController() {
+        return fileController;
+    }
+
+    public LifeCycleController getLifeCycleController() {
+        return lifeCycleController;
     }
 }

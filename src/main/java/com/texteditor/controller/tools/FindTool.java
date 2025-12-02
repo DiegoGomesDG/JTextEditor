@@ -17,7 +17,7 @@ import java.util.List;
 
 public class FindTool {
 
-    private record Match(int start, int end) {}
+    public record Match(int start, int end) {}
 
     private final TextEditorView view;
     private final JEditorPane editor;
@@ -152,6 +152,10 @@ public class FindTool {
         Match match = results.get(currentIndex);
 
         editor.select(match.start(), match.end());
+    }
+
+    public List<Match> getResults() {
+        return results;
     }
 
 }
