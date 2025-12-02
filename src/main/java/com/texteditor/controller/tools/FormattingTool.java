@@ -21,7 +21,7 @@ public class FormattingTool {
         this.view = view;
 
         registerActions();
-        setUpToolBarActions();
+        setupToolBarActions();
     }
 
     private void registerActions() {
@@ -63,7 +63,7 @@ public class FormattingTool {
         ));
     }
 
-    private void setUpToolBarActions() {
+    private void setupToolBarActions() {
         bindActionToComboBox(FormattingAction.TEXT_SIZE);
         bindActionToComboBox(FormattingAction.TEXT_FONT);
 
