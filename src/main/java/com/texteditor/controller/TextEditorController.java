@@ -13,9 +13,6 @@ import com.texteditor.view.TextEditorView;
 import com.texteditor.controller.tools.ZoomTool;
 
 import javax.swing.undo.UndoManager;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.io.File;
 
 /* Some discussions concerning separation of concerns for the MVC Architecture
 * https://stackoverflow.com/questions/5217611/the-mvc-pattern-and-swing
@@ -78,14 +75,6 @@ public class TextEditorController {
         view.getEditorMenuBar().getEditMenu().getMenuItem(EditAction.REDO).addActionListener(
             e -> undoManager.redo()
         );
-    }
-
-    public boolean requestCloseWindow() {
-        return lifeCycleController.handleWindowClosing(fileController);
-    }
-
-    public boolean requestWindowClose() {
-        return lifeCycleController.handleWindowClosing(fileController);
     }
 
     public FileController getFileController() {

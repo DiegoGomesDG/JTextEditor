@@ -33,7 +33,7 @@ public class StatusBarTool {
         });
     }
 
-    private void update() {
+    public void update() {
         String text = view.getEditorPane().getText();
         int charCount = text.length();
 
