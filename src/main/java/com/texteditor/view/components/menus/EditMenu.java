@@ -2,7 +2,6 @@ package com.texteditor.view.components.menus;
 
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.texteditor.actions.EditAction;
-import com.texteditor.actions.FormattingAction;
 
 import javax.swing.*;
 import java.awt.*;

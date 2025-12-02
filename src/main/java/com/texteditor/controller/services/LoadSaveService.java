@@ -9,6 +9,7 @@ import javax.swing.text.rtf.RTFEditorKit;
 import java.io.*;
 
 public class LoadSaveService {
+    private LoadSaveService() {}
 
     public static void save(TextDocumentModel model, File file)
         throws IOException, BadLocationException {

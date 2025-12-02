@@ -118,7 +118,6 @@ public class FileController {
 
         try {
             LoadSaveService.save(model, file);
-
             lifecycle.markSaved();
             lifecycle.updateWindowTitle(file);
         } catch (Exception e) {

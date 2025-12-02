@@ -17,8 +17,6 @@ public class TextEditor {
         FlatMacDarkLaf.setup();
 
         /* Initialize Text Editor */
-        SwingUtilities.invokeLater( () -> {
-            DocumentManager.getInstance().newDocument();
-        });
+        SwingUtilities.invokeLater( () -> DocumentManager.getInstance().newDocument() );
     }
 }

@@ -3,7 +3,6 @@ package com.texteditor.model;
 import com.texteditor.editorkit.scaling.ScaledEditorKit;
 
 import javax.swing.text.DefaultStyledDocument;
-import javax.swing.text.StyledEditorKit;
 import java.io.File;
 
 public class TextDocumentModel {

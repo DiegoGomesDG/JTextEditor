@@ -1,13 +1,11 @@
 package com.texteditor.view.components.menus;
 
-import com.texteditor.actions.EditAction;
 import com.texteditor.actions.FileAction;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
-import java.io.File;
 import java.util.EnumMap;
 
 public class FileMenu extends JMenu {

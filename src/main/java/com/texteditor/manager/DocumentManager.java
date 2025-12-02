@@ -45,4 +45,8 @@ public class DocumentManager {
             System.exit(0);
         }
     }
+
+    public List<DocumentWindow> getWindows() {
+        return windows;
+    }
 }
