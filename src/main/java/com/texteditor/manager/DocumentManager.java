@@ -6,14 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DocumentManager {
-    private static final DocumentManager INSTANCE = new DocumentManager();
-    public static DocumentManager getInstance() {
-        return INSTANCE;
-    }
-
+    private static DocumentManager instance;
     private final List<DocumentWindow> windows = new ArrayList<>();
 
     public DocumentManager() {}
+
+    public static DocumentManager getInstance() {
+        if (instance == null) {
+            instance = new DocumentManager();
+        }
+        return instance;
+    }
 
     public DocumentWindow newDocument() {
         DocumentWindow window = new DocumentWindow(this);

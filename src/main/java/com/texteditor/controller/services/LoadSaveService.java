@@ -9,12 +9,13 @@ import javax.swing.text.rtf.RTFEditorKit;
 import java.io.*;
 
 public class LoadSaveService {
+    private static final EditorKit kit = new RTFEditorKit();
+
     private LoadSaveService() {}
 
     public static void save(TextDocumentModel model, File file)
         throws IOException, BadLocationException {
 
-        EditorKit kit = new RTFEditorKit();
         DefaultStyledDocument doc = model.getDocument();
 
         try (OutputStream out = new FileOutputStream(file)) {
@@ -24,8 +25,6 @@ public class LoadSaveService {
 
     public static void load(TextDocumentModel model, File file)
         throws IOException, BadLocationException {
-
-        EditorKit kit = new RTFEditorKit();
 
         // Always create a new empty document from the same EditorKit
         DefaultStyledDocument newDoc =

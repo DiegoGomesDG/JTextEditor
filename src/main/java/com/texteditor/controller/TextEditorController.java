@@ -50,7 +50,7 @@ public class TextEditorController {
 
     private void setupMenuListeners() {
 
-        // New Window → via DocumentManager
+        // New Window via DocumentManager
         view.getEditorMenuBar().getFileMenu().getMenuItem(FileAction.NEW_DOCUMENT)
             .addActionListener(e -> DocumentManager.getInstance().newDocument());
 

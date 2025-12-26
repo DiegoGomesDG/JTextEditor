@@ -27,6 +27,7 @@ public class ZoomTool {
         double zoomFactor = view.getEditorStatusBar().getZoomSlider().getZoomFactor();
 
         /* Apply the given zoomFactor*/
+        /* Note: apply to the document directly */
         view.getEditorPane().getDocument().putProperty("ZOOM_FACTOR", zoomFactor);
 
         /* Force the editor to repaint using the new zoom */
