@@ -3,7 +3,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/DiegoGomesDG/Java-Text-Editor">
+  <a href="https://github.com/DiegoGomesDG/JTextEditor">
     <img src="src/main/resources/readme/icon.png" alt="Logo" width="250px" height="250px">
   </a>
 
@@ -12,9 +12,9 @@
   <p align="center">
     A simplified rich-text editor built in Java using Swing,
     <br />
-    <a href="https://github.com/DiegoGomesDG/Java-Text-Editor/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="https://github.com/DiegoGomesDG/JTextEditor/new?labels=bug&template=bug-report---.md">Report Bug</a>
     &middot;
-    <a href="https://github.com/DiegoGomesDG/Java-Text-Editor/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://github.com/DiegoGomesDG/JTextEditor/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>
 </div>
 
@@ -76,7 +76,7 @@ The application leverages a Model-View-Controller (MVC) architecture, with a Doc
 ### ⚙️ Installation
 1. Clone the repository:
 ```bash
-git clone https://github.com/DiegoGomesDG/JavaTextEditor.git
+git clone https://github.com/DiegoGomesDG/JTextEditor.git
 cd JavaTextEditor
 ```
 2. Build the project with Maven:
